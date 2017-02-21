@@ -14,11 +14,11 @@ http://www.springframework.org/schema/context/spring-context.xsd">
         <property name="user" value="${jdbc.userName}"/>
         <property name="password" value="${jdbc.password}"/>
     </bean>
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan">
             <list>
-                <value>java</value>
+                <value>org.ssh.model</value>
             </list>
         </property>
     </bean>
