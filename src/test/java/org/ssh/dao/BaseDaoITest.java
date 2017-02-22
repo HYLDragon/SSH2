@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 import org.ssh.model.Tuser;
 
 import javax.annotation.Resource;
@@ -19,14 +20,15 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 //告诉junit spring的配置文件,这样才能加载springIOC容器
 @ContextConfiguration({"classpath:spring/spring-dao.xml"})
+@Transactional("transactionManager")
 public class BaseDaoITest {
-    @Autowired
-    private  BaseDaoI<Tuser> tuserDao;
+    @Resource
+    private  BaseDaoI<Tuser> baseDao;
     @Test
     public void save() throws Exception {
-        //Tuser tuser=new Tuser();
-        //tuser.setCname("xxxfd");
-        //tuserDao.save(tuser);
+
+        System.out.println("有几个:"+baseDao.find("from Tuser").size());
+        System.out.println("xxxx=====================================================================ccccc");
     }
 
 }
