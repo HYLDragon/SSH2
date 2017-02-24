@@ -1,6 +1,7 @@
 package org.ssh.pageModel;
 
-import hyl.mes.model.Tmenu;
+
+import org.ssh.model.Tmenu;
 
 import java.math.BigDecimal;
 

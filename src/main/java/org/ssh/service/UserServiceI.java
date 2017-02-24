@@ -1,5 +1,6 @@
 package org.ssh.service;
 
+import org.ssh.pageModel.DataGrid;
 import org.ssh.pageModel.User;
 
 /**
@@ -11,26 +12,33 @@ public interface UserServiceI {
      * @param user
      * @return void
      */
-    public void add(User user);
+    void add(User user);
     /**
      * delete
      * @param user
      * @return void
      */
-    public void delete(User user);
+    void delete(User user);
     /**
      * update
      * @param user
      * @return void
      *
      */
-    public void update(User user);
+    void update(User user);
 
     /**
      *
      * @param user
      * @return user
      */
-    public User login(User user);
+    User login(User user);
+
+    /**
+     *
+     * @param user
+     * @return DataGrid
+     */
+    DataGrid<User> datagrid(User user);
 
 }
