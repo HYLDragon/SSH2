@@ -1,5 +1,4 @@
 package org.ssh.controller;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +10,7 @@ import org.ssh.service.UserServiceI;
 /**
  * Created by hyl on 17/2/25.
  */
+@RequestMapping("/userController")
 @Controller("userController")
 public class UserController {
     @Autowired

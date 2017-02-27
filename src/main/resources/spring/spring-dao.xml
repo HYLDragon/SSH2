@@ -36,13 +36,27 @@
 
     <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
         <tx:attributes>
-            <tx:method name="add*" propagation="REQUIRED"/>
-            <tx:method name="save*" propagation="REQUIRED"/>
-            <tx:method name="find*" propagation="REQUIRED"/>
+            <tx:method name="add*" propagation="REQUIRED" />
+            <tx:method name="append*" propagation="REQUIRED" />
+            <tx:method name="save*" propagation="REQUIRED" />
+            <tx:method name="update*" propagation="REQUIRED" />
+            <tx:method name="modify*" propagation="REQUIRED" />
+            <tx:method name="edit*" propagation="REQUIRED" />
+            <tx:method name="delete*" propagation="REQUIRED" />
+            <tx:method name="remove*" propagation="REQUIRED" />
+            <tx:method name="init" propagation="REQUIRED" />
+            <tx:method name="delAndInit" propagation="REQUIRED" />
+            <tx:method name="get*" propagation="REQUIRED" read-only="true" />
+            <tx:method name="find*" propagation="REQUIRED" read-only="true" />
+            <tx:method name="load*" propagation="REQUIRED" read-only="true" />
+            <tx:method name="search*" propagation="REQUIRED" read-only="true" />
+            <tx:method name="datagrid*" propagation="REQUIRED" read-only="true" />
+            <tx:method name="login*" propagation="REQUIRED" read-only="true" />
+            <tx:method name="*" propagation="REQUIRED" />
         </tx:attributes>
     </tx:advice>
     <aop:config>
-        <aop:pointcut id="transactionPointcut" expression="execution(* org.ssh.dao..*impl.*(..))"/>
+        <aop:pointcut id="transactionPointcut" expression="execution(* org.ssh.service..*Impl.*(..))"/>
         <aop:advisor advice-ref="transactionAdvice" pointcut-ref="transactionPointcut"/>
     </aop:config>
 </beans>

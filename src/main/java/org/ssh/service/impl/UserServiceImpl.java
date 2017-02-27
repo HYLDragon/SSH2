@@ -2,6 +2,7 @@ package org.ssh.service.impl;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.ssh.dao.BaseDaoI;
 import org.ssh.model.Tuser;
@@ -21,38 +22,42 @@ import java.util.List;
 @Service(value = "userService")
 public class UserServiceImpl implements UserServiceI {
     @Autowired
-    private BaseDaoI<Tuser> baseDao;
+    private BaseDaoI<Tuser> userDao;
 
     public void add(User user) {
         Tuser tuser=new Tuser();
         BeanUtils.copyProperties(user,tuser);
-        baseDao.save(tuser);
+        userDao.save(tuser);
     }
 
     public void delete(User user) {
         Tuser tuser=new Tuser();
         BeanUtils.copyProperties(user,tuser);
-        baseDao.delete(tuser);
+        userDao.delete(tuser);
     }
 
     public void update(User user) {
         Tuser tuser=new Tuser();
         BeanUtils.copyProperties(user,tuser);
-        baseDao.delete(tuser);
+        userDao.delete(tuser);
     }
 
     public User login(User user) {
         User u = new User();
-        Tuser tuser = new Tuser();
-        //tuser=baseDao.get()
-        return null;
+        HashMap<String,Object> params=new HashMap<String, Object>();
+        params.put("name",user.getCname());
+        params.put("pwd",user.getCpwd());
+        String hql="from Tuser t where t.cname=:name and t.cpwd=:pwd";
+        Tuser tuser=userDao.get(hql,params);
+        BeanUtils.copyProperties(tuser,u);
+        return u;
     }
 
     public DataGrid<User> datagrid(User user) {
         Tuser tuser=new Tuser();
         HashMap<String,Object> params=new HashMap<String, Object>();
         String hql="from Tuser t where 1=1";
-        List<Tuser> list=baseDao.find(hql,params);
+        List<Tuser> list=userDao.find(hql,params);
         List<User> l=new ArrayList<User>();
         DataGrid<User> datagrid=new DataGrid<User>();
 
